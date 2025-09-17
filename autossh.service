@@ -5,9 +5,10 @@ After=network.target
 [Service]
 User=<user>
 Environment="AUTOSSH_GATETIME=0"
-ExecStart=/usr/bin/autossh -i /path/to/ssh/key -M 0 -N -R <remote port>:localhost:<port on local machine> <VM username>@<VM ip>
+ExecStart=/usr/bin/autossh -i /path/to/ssh/key -M 0 -N -T -o "ServerAliveInterval=30" -o "ServerAliveCount=3"-R <remote port>:localhost:<port on local machine> <VM username>@<VM ip>
 Restart=always
 RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
+
